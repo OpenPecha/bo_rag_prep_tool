@@ -16,20 +16,20 @@ jobs:
 
     steps:
     - uses: actions/checkout@v3
-    
+
     - name: Set up Python 3.8
       uses: actions/setup-python@v3
       with:
         python-version: "3.8"
-        
+
     - name: Install dependencies
       run: |
         pip install -U pip
         pip install .
         pip install .[dev]
-        
+
     - name: Test with pytest
       run: PYTHONPATH=src pytest
-    
+
     - name: Test Coverage
-      run: PYTHONPATH=src pytest --cov project_name
+      run: PYTHONPATH=src pytest --cov bo_rag_prep_tool
