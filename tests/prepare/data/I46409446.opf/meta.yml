@@ -1,0 +1,68 @@
+id: I46409446
+ocr_import_info:
+  bdrc_scan_id: W4CZ1042
+  source: bdrc
+  ocr_info:
+    timestamp: '2023-02-01T00:00:00Z'
+  batch_id: batch-0001
+  software_id: norbuketaka
+  expected_default_language: bo
+  op_import_options: null
+default_language: bo
+source: https://library.bdrc.io
+initial_creation_type: ocr
+imported: 2024-09-12 14:18:06.326672
+last_modified: 2023-02-01 00:00:00+00:00
+parser: https://github.com/OpenPecha/Norbu-Keta-eText-import/blob/main/norbu_ketaka_parser.py
+source_metadata:
+  id: http://purl.bdrc.io/resource/W4CZ1042
+  status: http://purl.bdrc.io/admindata/StatusReleased
+  access: http://purl.bdrc.io/admindata/AccessOpen
+  geo_restriction:
+  - CN
+  outline: http://purl.bdrc.io/resource/O8LS1837
+  reproduction_of: http://purl.bdrc.io/resource/MW4CZ1042
+  copyright_status: http://purl.bdrc.io/resource/CopyrightPublicDomain
+  title: གཏེར་ཆོས། རྩ་གསུམ་གླིང་པ།
+  languages:
+  - bo
+  author: གནམ་ལྕགས་རྩ་གསུམ་གཏེར་བདག་གླིང་པ།
+bases:
+  I1PD108815:
+    source_metadata:
+      id: http://purl.bdrc.io/resource/I1PD108815
+      total_pages: 687
+      volume_number: 27
+      volume_pages_bdrc_intro: 2
+    base_file: I1PD108815.txt
+    order: 1
+  I1PD108816:
+    source_metadata:
+      id: http://purl.bdrc.io/resource/I1PD108816
+      total_pages: 665
+      volume_number: 28
+      volume_pages_bdrc_intro: 2
+    base_file: I1PD108816.txt
+    order: 2
+  I1PD108817:
+    source_metadata:
+      id: http://purl.bdrc.io/resource/I1PD108817
+      total_pages: 324
+      volume_number: 29
+      volume_pages_bdrc_intro: 2
+    base_file: I1PD108817.txt
+    order: 3
+  I1PD108818:
+    source_metadata:
+      id: http://purl.bdrc.io/resource/I1PD108818
+      total_pages: 764
+      volume_number: 30
+      volume_pages_bdrc_intro: 2
+    base_file: I1PD108818.txt
+    order: 4
+copyright:
+  status: Public domain
+  notice: The proofread texts are donated by the Norbu Ketaka project led by Queenie
+    Luo (Harvard University), Zhiying Li (Sichuan University) and Leonard van der
+    Kuijp (Harvard University). Correspondence should be directed to  queenieluo@g.harvard.edu
+license: CC0
