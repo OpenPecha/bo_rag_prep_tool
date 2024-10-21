@@ -1,12 +1,8 @@
-import json
 from pathlib import Path
 
 import yaml
 
-
-def write_json(data, output_path):
-    with open(output_path, "w") as f:
-        json.dump(data, f, ensure_ascii=False, indent=4)
+from bo_rag_prep_tool.utils import write_json
 
 
 def prepare(opf_path: Path, output_path: Path):
@@ -40,11 +36,5 @@ def prepare(opf_path: Path, output_path: Path):
 
     output_path.mkdir(exist_ok=True, parents=True)
     json_output_path = output_path / f"{pecha_id}.json"
-    write_json(book_metadata, json_output_path)
+    write_json(json_output_path, book_metadata)
     return json_output_path
-
-
-if __name__ == "__main__":
-    opf_path = Path("I46409446.opf")
-    json_file = prepare(opf_path, Path("output"))
-    print(json_file)
