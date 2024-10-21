@@ -10,11 +10,15 @@ authors = [
 ]
 description = "Tool to prepare data for rag prep tool"
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.10"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
+]
+
+dependencies = [
+  "cohere >= 5.11.1",
 ]
 
 [project.optional-dependencies]
