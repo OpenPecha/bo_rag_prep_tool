@@ -5,7 +5,7 @@ import yaml
 from bo_rag_prep_tool.utils import write_json
 
 
-def prepare(opf_path: Path, output_path: Path):
+def prepare_from_opf(opf_path: Path, output_path: Path):
     book_metadata = []
     ann_files = list(Path(opf_path / "layers").rglob("*.yml"))
     ann_files = sorted(ann_files, key=lambda x: x.name)
