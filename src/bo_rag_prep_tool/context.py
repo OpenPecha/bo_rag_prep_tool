@@ -27,7 +27,7 @@ def cosine_similarity(vec1, vec2):
 def get_context(query: str):
     query_embedding = get_cohere_embeddings([query])[0]
 
-    context_datas = read_json(Path("resource/embeddings.json"))
+    context_datas = read_json(Path("resource/four_truth_embeddings.json"))
 
     similarities = []
     # Store top three contexts data for llm generation
@@ -38,7 +38,7 @@ def get_context(query: str):
         )  # Pair similarity with context data
 
     # Sort the context data based on the similarity score in descending order
-    top_contexts = sorted(similarities, key=lambda x: x[0], reverse=True)[:3]
+    top_contexts = sorted(similarities, key=lambda x: x[0], reverse=True)[:10]
 
     # Extract the top 3 context data
     top_three_contexts = [context[1] for context in top_contexts]
