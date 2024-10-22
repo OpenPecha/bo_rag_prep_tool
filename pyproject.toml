@@ -19,6 +19,7 @@ classifiers = [
 
 dependencies = [
   "cohere >= 5.11.1",
+  "PyMuPDF >= 1.24.4",
 ]
 
 [project.optional-dependencies]
