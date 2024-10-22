@@ -1,5 +1,5 @@
 from pathlib import Path
-from typing import Dict
+from typing import List
 
 import fitz
 import yaml
@@ -43,16 +43,17 @@ def prepare_from_opf(opf_path: Path, output_path: Path):
     return json_output_path
 
 
-def extract_text_from_pdf_file(pdf_file_path: Path) -> Dict[int, str]:
+def extract_text_from_pdf_file(pdf_file_path: Path) -> List[str]:
     """Reads the content of a PDF file using PyMuPDF."""
-    text = {}
+    extracted_texts = []
 
     try:
         pdf_document = fitz.open(pdf_file_path)
         for no in range(len(pdf_document)):
             page = pdf_document.load_page(no)
-            text[no + 1] = page.get_text() if page.get_text() else ""
-        return text
+            curr_text = page.get_text() if page.get_text() else ""
+            extracted_texts.append(curr_text)
+        return extracted_texts
     except Exception as e:
         print(f"Failed to read PDF file {pdf_file_path}: {e}")
-        return {}
+        return []
