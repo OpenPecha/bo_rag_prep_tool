@@ -2,7 +2,7 @@ from pathlib import Path
 
 import numpy as np
 
-from bo_rag_prep_tool.embedding import get_cohere_embeddings
+from bo_rag_prep_tool.embedding import get_openai_embedding
 from bo_rag_prep_tool.utils import read_json
 
 
@@ -25,9 +25,9 @@ def cosine_similarity(vec1, vec2):
 
 
 def get_context(query: str):
-    query_embedding = get_cohere_embeddings([query])[0]
+    query_embedding = get_openai_embedding([query])[0]
 
-    context_datas = read_json(Path("resource/four_truth_embeddings.json"))
+    context_datas = read_json(Path("resource/ངོས་ཀྱི་ཡུལ་དང་ངོས་ཀྱི་མི་མང་།.json"))
 
     similarities = []
     # Store top three contexts data for llm generation
@@ -38,7 +38,7 @@ def get_context(query: str):
         )  # Pair similarity with context data
 
     # Sort the context data based on the similarity score in descending order
-    top_contexts = sorted(similarities, key=lambda x: x[0], reverse=True)[:10]
+    top_contexts = sorted(similarities, key=lambda x: x[0], reverse=True)[:5]
 
     # Extract the top 3 context data
     top_three_contexts = [context[1] for context in top_contexts]
