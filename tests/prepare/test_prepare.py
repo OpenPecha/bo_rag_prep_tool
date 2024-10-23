@@ -1,7 +1,7 @@
 import tempfile
 from pathlib import Path
 
-from bo_rag_prep_tool.prepare import prepare
+from bo_rag_prep_tool.prepare import prepare_from_opf
 from bo_rag_prep_tool.utils import read_json
 
 
@@ -12,7 +12,7 @@ def test_prepare():
     with tempfile.TemporaryDirectory() as tmpdirname:
         output_path = Path(tmpdirname)
 
-        json_output_path = prepare(opf_path, output_path)
+        json_output_path = prepare_from_opf(opf_path, output_path)
 
         expected_output = read_json(data / "expected_output.json")
 
