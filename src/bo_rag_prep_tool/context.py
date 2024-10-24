@@ -24,11 +24,15 @@ def cosine_similarity(vec1, vec2):
     return similarity
 
 
+def get_threshold(similarity_scores) -> int:
+    threshold = np.max(similarity_scores) - np.std(similarity_scores)
+    return threshold
+
+
 def get_context(query: str):
     query_embedding = get_openai_embedding([query])[0]
 
     context_datas = read_json(Path("resource/ངོས་ཀྱི་ཡུལ་དང་ངོས་ཀྱི་མི་མང་།.json"))
-
     similarities = []
     # Store top three contexts data for llm generation
     for context_data in context_datas:
@@ -39,8 +43,13 @@ def get_context(query: str):
 
     # Sort the context data based on the similarity score in descending order
     top_contexts = sorted(similarities, key=lambda x: x[0], reverse=True)[:10]
+    top_context_similarity_scores = [context[0] for context in top_contexts]
+    threshold = get_threshold(top_context_similarity_scores)
 
-    # Extract the top 3 context data
-    top_three_contexts = [context[1] for context in top_contexts]
+    final_contexts = []
+    for context in top_contexts:
+        context_similarity, context_data = context
+        if context_similarity >= threshold:
+            final_contexts.append(context_data)
 
-    return top_three_contexts
+    return final_contexts
