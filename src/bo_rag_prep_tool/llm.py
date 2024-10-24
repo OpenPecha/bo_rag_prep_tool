@@ -47,8 +47,7 @@ def get_answer(query: str):
     Contexts: {context_texts}
 
     """
-    # answer = get_claude_response(prompt)
-    answer = get_monlam_llm_response(prompt)
+    answer = get_claude_response(prompt)
     return answer
 
 
@@ -79,6 +78,5 @@ def get_monlam_llm_response(prompt: str):
 
 if __name__ == "__main__":
     query = "Who is Songtsen Gampo?"
-    # answer = get_monlam_llm_response(query)
     answer = get_answer(query)
     print(answer)
