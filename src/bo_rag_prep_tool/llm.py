@@ -1,6 +1,8 @@
+import json
 import os
 
 import anthropic
+import requests
 
 from bo_rag_prep_tool.context import get_context
 
@@ -45,5 +47,38 @@ def get_answer(query: str):
     Contexts: {context_texts}
 
     """
-    answer = get_claude_response(prompt)
+    # answer = get_claude_response(prompt)
+    answer = get_monlam_llm_response(prompt)
     return answer
+
+
+def get_monlam_llm_response(prompt: str):
+    def extract_text_from_monlam_response(response):
+        response_text = ""
+        lines = response.text.splitlines()
+        for line in lines:
+            if "generated_text" in line:
+                # Isolate the JSON part of the line
+                json_str = line.split("data: ")[1]
+                # Parse the JSON to extract the generated_text
+                json_data = json.loads(json_str)
+                response_text = json_data["generated_text"]
+                break
+        return response_text
+
+    url = "https://llm-api-with-langchain.onrender.com/generate_stream"
+    params = {"user_input": prompt, "chat_history": "[]"}
+    headers = {"accept": "application/json"}
+
+    response = requests.post(url, headers=headers, params=params)
+    if response.status_code == 200:
+        response_text = extract_text_from_monlam_response(response)
+        return response_text
+    return response
+
+
+if __name__ == "__main__":
+    query = "Who is Songtsen Gampo?"
+    # answer = get_monlam_llm_response(query)
+    answer = get_answer(query)
+    print(answer)

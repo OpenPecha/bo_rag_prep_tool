@@ -38,7 +38,7 @@ def get_context(query: str):
         )  # Pair similarity with context data
 
     # Sort the context data based on the similarity score in descending order
-    top_contexts = sorted(similarities, key=lambda x: x[0], reverse=True)[:5]
+    top_contexts = sorted(similarities, key=lambda x: x[0], reverse=True)[:10]
 
     # Extract the top 3 context data
     top_three_contexts = [context[1] for context in top_contexts]
